@@ -341,9 +341,9 @@ const tasks = [
   /* 16:00 수상식과 사진촬영 (16:00~16:15) */
   { id: "v7", ph: "day", g: "award", title: "수상식과 교수님 사진 촬영", note: "교수님과 사진촬영 때 사진 찍어주기", who: ["민서"] },
   /* 16:15 과대 투표 (16:15~16:45) */
-  { id: "v5", ph: "day", g: "elect", title: "과대 투표 진행", note: "과대 소개인사가 끝나면 투표용지 나눠주기. 회수한 용지를 받자마자 빠르게 카운트해서 소감 발표 전까지 끝내기", who: ["화윤", "세라", "시우"] },
+  { id: "v5", ph: "day", g: "elect", title: "과대 투표 진행", note: "과대 소개인사가 끝나면 시우는 왼쪽, 세라는 오른쪽 학생들에게 투표용지 나눠주기. 화윤은 왼쪽, 태연은 오른쪽 투표용지를 앞쪽부터 투표함에 가져오기. 가져온 용지는 바로 빠르게 카운트해서 소감 발표 전까지 끝내기", who: ["화윤", "세라", "시우", "태연"] },
   /* 16:45 학회장 투표 (16:45~17:00) */
-  { id: "v8", ph: "day", g: "chair", title: "학회장 투표 진행", note: "학회장 소개인사가 끝나면 투표용지 나눠주기. 회수한 용지를 받자마자 빠르게 카운트해서 소감 발표 전까지 끝내기", who: ["화윤", "세라", "시우"] },
+  { id: "v8", ph: "day", g: "chair", title: "학회장 투표 진행", note: "학회장 소개인사가 끝나면 시우는 왼쪽, 세라는 오른쪽 학생들에게 투표용지 나눠주기. 화윤은 왼쪽, 태연은 오른쪽 투표용지를 앞쪽부터 투표함에 가져오기. 가져온 용지는 바로 빠르게 카운트해서 소감 발표 전까지 끝내기", who: ["화윤", "세라", "시우", "태연"] },
   { id: "v9", ph: "day", g: "elect", title: "현재와 앞에서 과대표, 학회장 투표용지 세기", note: "학생들 앞에서 세기", who: ["태완"] },
   { id: "e6", ph: "day", g: "enter", title: "현재 발표 준비 도와주기", who: ["민서"] },
 ];
@@ -371,7 +371,7 @@ const info = [
   { title: "간식", lines: ["한솥 도시락 치킨마요: 3,900원, 총 160개", "나카산 답례품 수제쿠키 세트: 4,400원, 총 160개", "팩 음료수 (저렴한 걸로): 총 160개, 추가로 준비 예정", "나눠주는 시간: 1부가 끝나고 학생들이 퇴장할 때 입구쪽에서 하나씩"] },
   { title: "후보들", lines: ["학회장 후보: 미정", "2과대 후보: 미정", "3과대 후보: 미정", "4과대 후보: 미정"] },
   { title: "학술팀 투표 방식", lines: ["학술팀 투표: 네이버폼을 전학년 톡방에 올려서 학생이 투표하고, 교수님은 평가표로 평가"] },
-  { title: "학회장, 과대 투표 방식", lines: ["과대, 학회장 투표: 투표용지를 나눠주고 투표함에 받아서 앞에서 바로 개표", "투표용지 나눠주기: 시우는 무대에서 봤을 때 왼쪽, 세라는 오른쪽 학생들에게", "투표함 회수: 화윤이 투표함을 들고 앞쪽부터 전체를 돌며 가져오기"], diagram: "vote" },
+  { title: "학회장, 과대 투표 방식", lines: ["과대, 학회장 투표: 투표용지를 나눠주고 투표함에 받아서 앞에서 바로 개표", "투표용지 나눠주기: 시우는 무대에서 봤을 때 왼쪽, 세라는 오른쪽 학생들에게", "투표함 회수: 화윤은 왼쪽, 태연은 오른쪽 투표용지를 앞쪽부터 투표함에 가져오기"], diagram: "vote" },
   { title: "종강파티", lines: ["장소: 신원마을 명륜진사갈비", "시간: 18:00부터", "참석 인원: 미정"] }
 ];
 
@@ -767,27 +767,29 @@ function infoLine(l) {
 /* 312호 투표용지 배부 구역 그림. 무대에서 학생석을 바라본 모습이라 왼쪽, 오른쪽이 말 그대로 무대에서 본 방향입니다 */
 function voteMap() {
   let seats = "";
-  [112, 166, 220, 274, 328].forEach(cy => {
+  [124, 174, 224, 274, 324].forEach(cy => {
     for (let i = 0; i < 6; i++) {
       [32, 192].forEach(x0 => {
         seats += '<rect x="' + (x0 + i * 24) + '" y="' + (cy - 7) + '" width="16" height="14" rx="4" fill="var(--orange)" fill-opacity=".6"/>';
       });
     }
   });
-  return '<div class="vm"><svg viewBox="0 0 360 430" role="img" aria-label="312호 투표용지 배부 구역">' +
+  return '<div class="vm"><svg viewBox="0 0 360 430" role="img" aria-label="312호 투표용지 배부와 회수 구역">' +
     '<rect x="20" y="24" width="160" height="330" fill="#7a5af8" fill-opacity=".2"/>' +
     '<rect x="180" y="24" width="160" height="330" fill="var(--navy)" fill-opacity=".25"/>' + seats +
     '<rect x="20" y="24" width="320" height="330" rx="6" fill="none" stroke="var(--text)" stroke-width="2.5"/>' +
     '<line x1="180" y1="24" x2="180" y2="354" stroke="var(--text)" stroke-width="2" stroke-dasharray="4 4"/>' +
-    '<line x1="20" y1="80" x2="340" y2="80" stroke="var(--text)" stroke-opacity=".35" stroke-width="1.5"/>' +
-    '<g font-weight="800" text-anchor="middle" fill="var(--text)"><text x="100" y="52" font-size="28">시우</text><text x="260" y="52" font-size="28">세라</text></g>' +
-    '<g font-size="17" font-weight="700" text-anchor="middle" fill="var(--sub)"><text x="100" y="72">왼쪽</text><text x="260" y="72">오른쪽</text></g>' +
+    '<line x1="20" y1="94" x2="340" y2="94" stroke="var(--text)" stroke-opacity=".35" stroke-width="1.5"/>' +
+    '<g font-size="16" font-weight="700" text-anchor="middle" fill="var(--sub)"><text x="100" y="42">왼쪽</text><text x="260" y="42">오른쪽</text></g>' +
+    '<g font-size="19" font-weight="800" text-anchor="middle" fill="var(--text)"><text x="100" y="64">나눠주기 시우</text><text x="260" y="64">나눠주기 세라</text>' +
+    '<text x="100" y="86">회수 화윤</text><text x="260" y="86">회수 태연</text></g>' +
     '<text x="180" y="16" font-size="16" font-weight="700" text-anchor="middle" fill="var(--sub)">뒤쪽</text>' +
     '<rect x="20" y="364" width="320" height="46" rx="8" fill="var(--navy)"/>' +
     '<text x="180" y="394" font-size="24" font-weight="800" text-anchor="middle" fill="#fff">무대 (앞)</text></svg>' +
-    '<div class="vl"><span class="sw" style="background:#7a5af8"></span><b>시우</b> 무대에서 봤을 때 왼쪽 학생들에게 투표용지 나눠주기</div>' +
-    '<div class="vl"><span class="sw" style="background:var(--navy)"></span><b>세라</b> 무대에서 봤을 때 오른쪽 학생들에게 투표용지 나눠주기</div>' +
-    '<div class="vl"><b>화윤</b> 투표함을 들고 앞쪽부터 전체 돌며 가져오기</div>' +
+    '<div class="vl"><span class="sw" style="background:#7a5af8"></span><span><b>시우</b> 무대에서 봤을 때 왼쪽 학생들에게 투표용지 나눠주기</span></div>' +
+    '<div class="vl"><span class="sw" style="background:#7a5af8"></span><span><b>화윤</b> 왼쪽 투표용지를 앞쪽부터 투표함에 가져오기</span></div>' +
+    '<div class="vl"><span class="sw" style="background:var(--navy)"></span><span><b>세라</b> 무대에서 봤을 때 오른쪽 학생들에게 투표용지 나눠주기</span></div>' +
+    '<div class="vl"><span class="sw" style="background:var(--navy)"></span><span><b>태연</b> 오른쪽 투표용지를 앞쪽부터 투표함에 가져오기</span></div>' +
     '<div class="in" style="margin-top:6px">312호를 직사각형 계단식 강당으로 본 그림이고, 무대에서 학생석을 바라본 모습이에요</div></div>';
 }
 function viewInfo() {
