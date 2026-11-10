@@ -63,7 +63,7 @@ h3{font-size:17px;margin:0 0 6px}
 
 /* name picker */
 .pick{padding:24px 16px}
-.pick h1{font-size:30px;margin:12px 0 4px;color:var(--navy-t)}
+.pick h1{font-size:30px;margin:2px 0 4px;color:var(--navy-t)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
 .nbtn{min-height:64px;border-radius:14px;background:var(--card);border:2px solid var(--line);font-size:20px;font-weight:800;padding:8px;text-align:center}
 .nbtn small{display:block;font-size:13px;font-weight:500;color:var(--sub)}
@@ -106,6 +106,30 @@ h3{font-size:17px;margin:0 0 6px}
 .iv{font-size:20px;font-weight:800;line-height:1.35}
 .il .in{font-size:15px;color:var(--sub);margin-top:2px}
 .il:first-of-type{border-top:0}
+.hero{border-radius:22px;background:var(--navy);color:var(--on-navy);padding:26px 22px;margin-bottom:16px}
+.hd2{font-size:15px;font-weight:600;opacity:.85;margin-top:4px}
+.hero>*{position:relative;z-index:1}
+.he{font-size:13px;font-weight:700;opacity:.8;letter-spacing:.02em}
+.ht{font-size:26px;font-weight:900;line-height:1.25}
+.hs{font-size:15px;font-weight:600;line-height:1.4;opacity:.95;margin-bottom:14px}
+.hm{display:flex;flex-wrap:wrap;gap:6px}
+.hm span{font-size:13px;font-weight:700;background:rgba(255,255,255,.18);border-radius:999px;padding:4px 11px}
+.ml{display:flex;flex-direction:column;gap:10px}
+.mr{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:18px 16px;border-radius:18px;background:var(--card);border:1px solid var(--line);transition:transform .1s,background .1s}
+.mr:active{transform:scale(.98);background:var(--line)}
+.mic{flex:0 0 48px;height:48px;border-radius:14px;background:var(--navy);color:var(--on-navy);display:flex;align-items:center;justify-content:center}
+.mic svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mtx{flex:1;min-width:0}
+.mtx b{display:block;font-size:19px;font-weight:800}
+.mtx small{display:block;font-size:14px;color:var(--sub);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chev{flex:0 0 auto;width:10px;height:10px;border:solid var(--sub);border-width:0 2.5px 2.5px 0;transform:rotate(-45deg);margin-right:4px}
+.foot{text-align:center;color:var(--sub);font-size:12px;margin-top:22px}
+.brand{display:flex;align-items:center;gap:8px}
+.bl2{width:30px;height:30px;border-radius:9px;background:var(--navy);color:var(--on-navy);display:flex;align-items:center;justify-content:center}
+.bl2 svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.logo{width:64px;height:64px;border-radius:18px;background:var(--navy);color:var(--on-navy);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.logo svg{width:38px;height:38px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pk1{font-size:14px;font-weight:700;color:var(--sub)}
 .back{min-height:48px;padding:0 14px;margin:0 0 12px -6px;font-weight:800;font-size:17px;color:var(--navy-t)}
 /* tabs */
 nav{
@@ -568,9 +592,11 @@ function taskRow(t, check, n) {
 }
 
 /* ---------- 화면: 이름 선택 ---------- */
+const LOGO = '<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><ellipse cx="16" cy="16" rx="4.8" ry="11"/><path d="M5 16h22M7 9.5h18M7 22.5h18"/></svg>';
 function viewPicker() {
-  return '<div class="pick"><div class="sub">' + esc(EVENT.school + " " + EVENT.title) + '</div>' +
-    '<h1>이름 선택</h1><div class="sub">내 이름을 눌러주세요</div>' +
+  return '<div class="pick"><div class="logo">' + LOGO + '</div>' +
+    '<div class="pk1">' + esc(EVENT.school + " " + "국제통상학과") + '</div>' +
+    '<h1>학술제 운영</h1><div class="sub">이름을 선택하면 내 화면으로 들어가요</div>' +
     '<div class="grid2">' + members.map(m =>
       '<button class="nbtn' + (m.name === state.name ? " cur" : "") + '" data-a="pick" data-n="' + esc(m.name) + '">' + esc(m.name) +
       (m.title ? '<small>' + esc(m.title) + '</small>' : "") + '</button>').join("") + '</div>' +
@@ -883,19 +909,10 @@ const ICONS = {
 };
 /* 첫 화면: 큰 버튼 두 개만 */
 function viewHome(n, dd) {
-  let planSub = dd > 0 ? "D-" + dd + ", 리허설과 당일 순서" : "오늘 순서와 리허설";
-  if (dayState(n) === "day") {
-    const t = n.getHours() * 60 + n.getMinutes();
-    const cur = timeline().find(s => s.s0 <= t && t < s.s1);
-    if (cur) planSub = "지금 " + cur.title;
-  }
-  const mine = allItems().filter(isMine);
-  const left = mine.filter(x => !isDone(x.id)).length;
-  const roleSub = mine.length ? "남은 일 " + left + "개" : "아직 배정된 일이 없어요";
-  return '<div class="home">' +
-    '<button class="hbtn" data-a="tab" data-t="sched">' + ICONS.sched + '<b>시간표</b></button>' +
-    '<button class="hbtn alt" data-a="tab" data-t="todo">' + ICONS.todo + '<b>역할확인</b><span>' + esc(state.name) + ' 님, ' + esc(roleSub) + '</span></button>' +
-    '<button class="hbtn alt" data-a="tab" data-t="info">' + ICONS.info + '<b>행사 정보</b><span>장소, 간식, 투표 방식</span></button></div>';
+  const row = (t, ico, title) => '<button class="mr" data-a="tab" data-t="' + t + '"><span class="mic">' + ico + '</span>' +
+    '<span class="mtx"><b>' + title + '</b></span><i class="chev"></i></button>';
+  return '<div class="hero"><div class="ht">' + esc(EVENT.title) + '</div><div class="hd2">11월 26일 목요일</div></div>' +
+    '<div class="ml">' + row("sched", ICONS.sched, "시간표") + row("todo", ICONS.todo, "역할확인") + row("info", ICONS.info, "행사 정보") + '</div>';
 }
 
 function render(keep) {
@@ -907,7 +924,7 @@ function render(keep) {
   let v = state.tab === "home" ? viewHome(n, dd) : state.tab === "sched" ? viewSched() : state.tab === "todo" ? viewTodo() : state.tab === "info" ? viewInfo() : viewNotice();
   if (state.tab !== "home") v = '<button class="back" data-a="tab" data-t="home">&larr; 처음으로</button>' + v;
   app.innerHTML =
-    '<div class="top"><div><div class="t1">' + esc(EVENT.title) + '</div><div class="t2">11월 26일 목요일</div></div>' +
+    '<div class="top">' + (state.tab === "home" ? '<div class="t1">학술제 운영</div>' : '<div><div class="t1">' + esc(EVENT.title) + '</div><div class="t2">11월 26일 목요일</div></div>') +
     '<div class="hr"><button class="tg" data-a="theme" aria-label="' + (isDark() ? "라이트 모드로 바꾸기" : "다크 모드로 바꾸기") + '">' + (isDark() ? ICONS.sun : ICONS.moon) + '</button>' +
     '<button class="who" data-a="chname">' + esc(state.name) + '</button></div>' +
     (state.menu ? '<div class="menu">' + members.map(m => '<button class="mi' + (m.name === state.name ? ' cur' : '') + '" data-a="pick" data-n="' + esc(m.name) + '">' + esc(m.name) + (m.title ? '<small>' + esc(m.title) + '</small>' : '') + '</button>').join('') + '</div>' : '') + '</div>' +
