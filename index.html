@@ -275,21 +275,21 @@ const groups = [
   { id: "open",  name: "입장과 오프닝", time: "09:00", start: 540, part: "1부" },
   { id: "talk",  name: "발표 시간 (1부, 2부 공통)", time: "10:00", start: 600, part: "1부" },
   { id: "snack", name: "간식 픽업과 배부", time: "11:00", start: 660, part: "1부" },
-  { id: "vote",  name: "학술팀 투표", time: "15:40", start: 940, part: "2부" },
-  { id: "rank",  name: "순위 집계", time: "15:55", start: 955, part: "2부" },
-  { id: "fee",   name: "학회비 발표", time: "15:55", start: 956, part: "2부" },
-  { id: "award", name: "수상식과 사진촬영", time: "16:00", start: 960, part: "2부" },
-  { id: "elect", name: "과대 투표", time: "16:15", start: 975, part: "2부" },
-  { id: "chair", name: "학회장 투표", time: "16:45", start: 1005, part: "2부" },
-  { id: "trans", name: "1부 끝난 뒤", time: "11:40", start: 700, part: "1부" },
-  { id: "part2", name: "2부 시작 전", time: "13:00", start: 780, part: "2부" },
+  { id: "vote",  name: "학술팀 투표", time: "15:15", start: 915, part: "2부" },
+  { id: "rank",  name: "순위 집계", time: "15:30", start: 930, part: "2부" },
+  { id: "fee",   name: "학회비 발표", time: "15:30", start: 931, part: "2부" },
+  { id: "award", name: "수상식과 사진촬영", time: "15:35", start: 935, part: "2부" },
+  { id: "elect", name: "과대 투표", time: "15:50", start: 950, part: "2부" },
+  { id: "chair", name: "학회장 투표", time: "16:20", start: 980, part: "2부" },
+  { id: "trans", name: "1부 끝난 뒤", time: "12:15", start: 735, part: "1부" },
+  { id: "part2", name: "2부 시작 전", time: "13:10", start: 790, part: "2부" },
   { id: "party", name: "종강파티", time: "18:00", start: 1080, part: "종강파티" }
 ];
 
 const parts = [
-  { id: "p1",  name: "1부", range: "09:00~11:40", place: "세종관 512호" },
-  { id: "tr",  name: "점심시간", range: "11:40~13:00", place: "" },
-  { id: "p2",  name: "2부", range: "13:00~17:05", place: "세종관 312호" },
+  { id: "p1",  name: "1부", range: "09:00~12:15", place: "세종관 312호" },
+  { id: "tr",  name: "점심시간", range: "12:15~13:10", place: "" },
+  { id: "p2",  name: "2부", range: "13:10~16:40", place: "세종관 312호" },
   { id: "eve", name: "종강파티", range: "18:00~", place: "신원마을 명륜진사갈비" }
 ];
 
@@ -297,27 +297,27 @@ const parts = [
 const schedule = [
   { id: "s1", part: "p1", start: "09:00", end: "09:30", title: "출석체크, 전원 착석 완료", g: "open", tbd: true, note: "출석 종이는 조교님" },
   { id: "s2", part: "p1", start: "09:30", end: "10:00", title: "학과장 인사말, 교수님 소개, 이어서 오늘 진행 흐름 설명", g: "open", ext: "학과장", dept: ["학회장"] },
-  { id: "s3", part: "p1", start: "10:00", end: "10:30", title: "1팀 발표, 질의응답", g: "talk", team: "1-1" },
-  { id: "s4", part: "p1", start: "10:35", end: "11:05", title: "2팀 발표, 질의응답", g: "talk", team: "1-2" },
-  { id: "s5", part: "p1", start: "11:10", end: "11:40", title: "3팀 발표, 질의응답", g: "talk", team: "1-3" },
+  { id: "s3", part: "p1", start: "10:00", end: "10:30", title: "1팀 발표, 질의응답", g: "talk", team: "1" },
+  { id: "s4", part: "p1", start: "10:35", end: "11:05", title: "2팀 발표, 질의응답", g: "talk", team: "2" },
+  { id: "s5", part: "p1", start: "11:10", end: "11:40", title: "3팀 발표, 질의응답", g: "talk", team: "3" },
+  { id: "s10", part: "p1", start: "11:45", end: "12:15", title: "4팀 발표, 질의응답", g: "talk", team: "4" },
 
-  { id: "s6", part: "tr", start: "11:40", end: "12:00", title: "1부 종료, 간식 배부, 512호 정리", g: "trans", dept: ["과대"], place: "세종관 512호", note: "간식 수량은 총무부" },
-  { id: "s7", part: "tr", start: "12:00", end: "13:00", title: "점심시간 (자유)", place: "" },
-  { id: "s8", part: "tr", at: "13:00", label: "13:00 전", title: "2부 장비와 짐을 312호로 이동", g: "trans", tbd: true, alert: "학생회는 12시 50분까지 312호 앞으로 모이기", place: "512호에서 312호로" },
+  { id: "s6", part: "tr", start: "12:15", end: "12:20", title: "1부 종료, 간식 배부, 312호 정리", g: "trans", dept: ["과대"], place: "세종관 312호", note: "간식 수량은 총무부" },
+  { id: "s7", part: "tr", start: "12:20", end: "13:10", title: "점심시간 (자유)", place: "" },
+  { id: "s8", part: "tr", at: "13:10", label: "13:10 전", title: "2부 준비", g: "trans", tbd: true, alert: "학생회는 13시까지 312호로 모이기", place: "" },
 
-  { id: "s9",  part: "p2", start: "13:00", end: "13:20", title: "2부 출석체크, 전원 착석", g: "part2", tbd: true },
-  { id: "s10", part: "p2", start: "13:25", end: "13:55", title: "4팀 발표, 질의응답", g: "talk", team: "2-1" },
-  { id: "s11", part: "p2", start: "14:00", end: "14:30", title: "5팀 발표, 질의응답", g: "talk", team: "2-2" },
-  { id: "s12", part: "p2", start: "14:35", end: "15:05", title: "6팀 발표, 질의응답", g: "talk", team: "2-3" },
-  { id: "s13", part: "p2", start: "15:10", end: "15:40", title: "7팀 발표, 질의응답", g: "talk", team: "2-4" },
+  { id: "s9",  part: "p2", start: "13:10", end: "13:30", title: "2부 출석체크, 전원 착석", g: "part2", tbd: true },
+  { id: "s11", part: "p2", start: "13:35", end: "14:05", title: "5팀 발표, 질의응답", g: "talk", team: "5" },
+  { id: "s12", part: "p2", start: "14:10", end: "14:40", title: "6팀 발표, 질의응답", g: "talk", team: "6" },
+  { id: "s13", part: "p2", start: "14:45", end: "15:15", title: "7팀 발표, 질의응답", g: "talk", team: "7" },
 
-  { id: "s14", part: "p2", start: "15:40", end: "15:55", title: "학술팀 투표 (학생, 교수님)", g: "vote" },
-  { id: "s15", part: "p2", start: "15:55", end: "16:00", title: "학회비 사용내역 발표", g: "fee" },
-  { id: "s16", part: "p2", start: "16:00", end: "16:15", title: "학술제 수상식, 교수님과 사진촬영", g: "award" },
-  { id: "s17", part: "p2", start: "16:15", end: "16:45", title: "2, 3, 4학년 과대 소개인사, 투표 진행, 소감 발표", g: "elect" },
-  { id: "s18", part: "p2", start: "16:45", end: "17:00", title: "학회장 소개인사, 투표 진행, 소감 발표", g: "chair" },
-  { id: "s18b", part: "p2", start: "17:00", end: "17:05", title: "학생회, 각 학년 과대 나와서 마무리 인사" },
-  { id: "s19", part: "p2", start: "17:05", end: null, title: "단체사진 촬영 후 종료 (조교가 촬영)" },
+  { id: "s14", part: "p2", start: "15:15", end: "15:30", title: "학술팀 투표 (학생, 교수님)", g: "vote" },
+  { id: "s15", part: "p2", start: "15:30", end: "15:35", title: "학회비 사용내역 발표", g: "fee" },
+  { id: "s16", part: "p2", start: "15:35", end: "15:50", title: "학술제 수상식, 교수님과 사진촬영", g: "award" },
+  { id: "s17", part: "p2", start: "15:50", end: "16:20", title: "2, 3, 4학년 과대 소개인사, 투표 진행, 소감 발표", g: "elect" },
+  { id: "s18", part: "p2", start: "16:20", end: "16:35", title: "학회장 소개인사, 투표 진행, 소감 발표", g: "chair" },
+  { id: "s18b", part: "p2", start: "16:35", end: "16:40", title: "학생회, 각 학년 과대 나와서 마무리 인사" },
+  { id: "s19", part: "p2", start: "16:40", end: null, title: "단체사진 촬영 후 종료 (조교가 촬영)" },
 
   { id: "s20", part: "eve", start: "18:00", end: null, title: "종강파티", g: "party", dept: ["총무부", "기획부"],
     note: "예약과 결제는 총무부, 사진은 기획부. 참석 인원 미정, 확정 후 예약. 이동 방법 미정" }
@@ -325,15 +325,15 @@ const schedule = [
 
 const voteSteps = ["용지 배부", "투표", "회수", "집계", "결과 전달"];
 
-/* 발표팀. key는 "부-번호". 시간표의 team 값과 연결됩니다. 맨 앞 이름이 발표자 */
+/* 발표팀. key는 몇 팀인지(시간표의 team 값과 연결). 맨 앞 이름이 발표자 */
 const teams = [
-  { key: "1-1", topic: "미국의 관세정책 변화에 따른 한미 교역구조 변화와 대응 전략에 관한 연구", members: ["이현재", "김민준", "이은혁"] },
-  { key: "1-2", topic: "미국의 자동차 산업 규제에 대한 한국의 대응방안", members: ["한지혜", "박서연", "원기연"] },
-  { key: "1-3", topic: "WTO 상소분쟁기구 역할 상실에 관련된 대안 연구", members: ["박소연", "문강", "권세라"] },
-  { key: "2-1", topic: "고환율에 따른 한국 수출기업의 리스크 관리 전략에 관한 연구", members: ["임준규", "염동건", "정원빈"] },
-  { key: "2-2", topic: "한류를 기반으로 한 소비재 수출 확대 전략에 관한 연구", members: ["안소민", "김태완", "정은채"] },
-  { key: "2-3", topic: "C-커머스 확산에 따른 한국 해외직구 제도의 문제점과 대응 전략", members: ["김나연", "김정은", "오지수"] },
-  { key: "2-4", topic: "스테이블코인 시대 국제무역결제의 금융보안 과제와 한국의 결제시스템 대응방안", members: ["백승주", "조윤하"] }
+  { key: "1", topic: "WTO DSU 상소기구 마비 대응에 관한 연구: MPIA의 한계와 WTO DSU 체제 복원의 필요성", members: ["박소연", "문강", "권세라"] },
+  { key: "2", topic: "미국 관세정책 변화에 따른 한미 교역구조의 재편과 대응 전략의 연구", members: ["이현재", "김민준", "이은혁"] },
+  { key: "3", topic: "미국의 자동차 산업규제가 한국 자동차산업에 미치는 문제점과 대응방안", members: ["한지혜", "박서연", "원기연"] },
+  { key: "4", topic: "한류를 기반으로 한 태국, 베트남의 K-Food 수출 확대 전략에 관한 연구 (10대 20대 청년을 중심으로)", members: ["안소민", "김태완", "정은채"] },
+  { key: "5", topic: "고환율이 한국 중소 수출기업의 수출경쟁력에 미치는 영향과 대응방안", members: ["임준규", "염동건", "정원빈"] },
+  { key: "6", topic: "C-커머스 확산에 따른 한국 해외직구 제도의 문제점과 대응전략", members: ["김나연", "김정은", "오지수"] },
+  { key: "7", topic: "스테이블코인 시대 국제무역결제의 금융보안 과제와 한국의 결제시스템 대응방안", members: ["백승주", "조윤하"] }
 ];
 
 /* 리허설 (세종관, 조교님 통해 예약 완료) */
@@ -353,7 +353,7 @@ const rehearsalMeta = { dept: ["부학회장", "학술부"], note: "예약 완�
 */
 const tasks = [
   /* 08:45 입장과 출석체크 */
-  { id: "e1", ph: "day", g: "enter", title: "512호 출석체크 관리", note: "각 학년 과대(1, 2, 3, 4학년)를 데리고 진행. 테이블, 출석 종이, 볼펜을 챙겨서 09:15까지 전학년 학생이 착석하도록 하기", who: ["준규"] },
+  { id: "e1", ph: "day", g: "enter", title: "312호 출석체크 관리", note: "각 학년 과대(1, 2, 3, 4학년)를 데리고 진행. 테이블, 출석 종이, 볼펜을 챙겨서 09:15까지 전학년 학생이 착석하도록 하기", who: ["준규"] },
   { id: "e4", ph: "day", g: "enter", title: "앞쪽부터 채워 앉도록 학생 안내", who: ["소민", "은채", "유빈", "세라", "태연"] },
   { id: "e9", ph: "day", g: "enter", title: "강당 앞 큰 현수막 설치", note: "설치가 끝나면 학생들 자리 안내 도와주기", who: ["시우", "태완"] },
   { id: "e10", ph: "day", g: "enter", title: "입구쪽 작은 현수막 설치", note: "설치가 끝나면 학생들 자리 안내 도와주기", who: ["화윤", "민재"] },
@@ -361,7 +361,7 @@ const tasks = [
   /* 11:00 간식 픽업과 배부 */
   { id: "k1", ph: "day", g: "snack", title: "간식 준비 & 배부", note: "나가서 배달 온 간식 픽업, 입구쪽으로 가져와서 1부가 끝나고 학생들이 퇴장할 때 하나씩 받아가게 나눠주기", who: ["태완", "시우", "민재"] },
   /* 11:40 전환 */
-  { id: "m2", ph: "day", g: "trans", title: "512호 마지막 정리", note: "현수막과 우리 학과 짐을 모두 챙기고, 쓰레기 같은 거 보이면 줍기", who: ["소민", "세라", "서영", "태연"] },
+  { id: "m2", ph: "day", g: "trans", title: "312호 정리", note: "현수막과 우리 학과 짐을 모두 챙기고, 쓰레기 같은 거 보이면 줍기", who: ["소민", "세라", "서영", "태연"] },
   { id: "m3", ph: "day", g: "trans", title: "입구쪽 작은 현수막 제거", note: "1부가 끝나면 바로", who: ["유빈", "은채"] },
   { id: "m4", ph: "day", g: "trans", title: "강당 앞 큰 현수막 제거", note: "1부가 끝나면 바로", who: ["준규", "화윤"] },
   /* 13:00 2부 시작 */
@@ -392,8 +392,6 @@ const roles = [
 
 /* 공지. pinned가 true면 상단 고정. date 최신순 */
 const notices = [
-  { id: "n1", date: "2026-11-08", pinned: true, title: "512호는 12:00 전에 비워야 해요",
-    body: "512호는 12:00부터 수업이 있어요. 1부 종료 후 간식 배부와 정리를 끝내고 완전히 비워야 해요." },
   { id: "n2", date: "2026-11-08", pinned: true, title: "현장 역할은 전부 배정 예정이에요",
     body: "담당자가 정해지면 내 할 일에 자동으로 나와요. 미정 항목은 아래 미정 모아보기에서 확인하세요." },
   { id: "n3", date: "2026-11-08", pinned: false, title: "리허설 예약 완료",
@@ -405,7 +403,7 @@ const notices = [
 /* 행사 진행을 위해 알아둘 것. 내용을 고치거나 줄을 추가하면 화면에 그대로 반영됩니다. "미정"이라고 쓰면 주황 점선 배지로 보입니다 */
 const info = [
   { title: "대주제", lines: ["대주제: 급변하는 글로벌 통상과 한국 무역의 성장 방향"] },
-  { title: "장소", lines: ["1부: 세종관 512호 (12:00부터 수업, 그 전에 비우기)", "2부: 세종관 312호 (13시까지 수업)"] },
+  { title: "장소", lines: ["1부, 2부: 세종관 312호 (하루 종일 312호에서 진행)"] },
   { title: "현수막", lines: ["아래 디자인을 누르면 크게 볼 수 있어요"], images: [{ label: "강당 앞 큰 현수막", key: "stage" }, { label: "입구쪽 작은 현수막", key: "gate" }, { label: "종강파티 식당 현수막", key: "party" }] },
   { title: "간식", lines: ["한솥 도시락 치킨마요: 3,900원, 총 160개", "나카산 답례품 수제쿠키 세트: 4,400원, 총 160개", "팩 음료수 (저렴한 걸로): 총 160개, 추가로 준비 예정", "나눠주는 시간: 1부가 끝나고 학생들이 퇴장할 때 입구쪽에서 하나씩"] },
   { title: "후보들", lines: ["학회장 후보: 미정", "2과대 후보: 미정", "3과대 후보: 미정", "4과대 후보: 미정"] },
@@ -416,7 +414,6 @@ const info = [
 
 /* 장소 정보 */
 const places = [
-  { name: "세종관 512호", lines: ["1부 장소, 11월 24일 1부 리허설", "12:00부터 수업이 있어 그 전에 완전히 비우기"] },
   { name: "세종관 312호", lines: ["2부, 2부 마무리 장소, 11월 23일과 25일 리허설", "13시까지 수업이 있음, 입장 가능 시간은 확인 필요"] },
   { name: "종강파티 장소", lines: ["신원마을 명륜진사갈비, 18:00부터", "이동 방법 미정"] }
 ];
